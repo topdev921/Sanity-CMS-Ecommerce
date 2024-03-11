@@ -1,4 +1,3 @@
-import { getSingleProductData } from "@/app/api/sanity/endpoint";
 import AddToCartButton from "@/components/AddToCartButton";
 import ProductCarousel from "@/components/ProductCarousel";
 import ShopByCategory from "@/components/ShopByCategory";
@@ -10,11 +9,28 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { formatCurrency } from "@/lib/formatCurrency";
-import { urlFor } from "@/lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
 import { ProductPageProps } from "@/types";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
+
+async function getSingleProductData(slug: string) {
+  const query = `*[_type == "product" && slug.current == "${slug}"][0] {
+    _id,
+    images,
+    price,
+    name,
+    description,
+    "slug": slug.current,
+    "categoryName": category->name,
+    price_id
+  }`;
+
+  const data = await client.fetch(query);
+
+  return data;
+}
 
 export default async function ProductPage({
   params,

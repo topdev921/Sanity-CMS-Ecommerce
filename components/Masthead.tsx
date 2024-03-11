@@ -1,12 +1,24 @@
-import { urlFor } from "@/lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
 import InfiniteCarousel from "./InfiniteCarousel";
 import { Button } from "./ui/button";
-import { getMastheadData } from "@/app/api/sanity/endpoint";
 
 interface MastHeadProps {
   index: 0 | 1;
+}
+
+async function getMastheadData(index: number) {
+  const query = `*[_type == "masthead"][${index}] {
+    name,
+    image,
+    imageDescription,
+    "productSlug": product->slug.current,
+  }`;
+
+  const data = await client.fetch(query);
+
+  return data;
 }
 
 export default async function Masthead({ index }: MastHeadProps) {

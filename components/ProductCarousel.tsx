@@ -1,12 +1,28 @@
-import { getProductData } from "@/app/api/sanity/endpoint";
 import { ProductIdProps, ProductProps } from "@/types";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import Carousel from "./Carousel";
+import { client } from "@/lib/sanity";
 
 type ProductCarouselProps = {
   title: string;
 } & ProductIdProps;
+
+async function getProductData() {
+  const query = `*[_type == "product"][0...8] | order(_updatedAt asc) {
+    _id,
+    price,
+    name,
+    "slug": slug.current,
+    "categoryName": category->name,
+    "imageUrl1": images[0].asset->url,
+    "imageUrl2": images[1].asset->url,
+  }`;
+
+  const data = await client.fetch(query);
+
+  return data;
+}
 
 export default async function ProductCarousel({
   title,

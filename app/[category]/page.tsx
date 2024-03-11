@@ -1,6 +1,38 @@
 import ProductCard from "@/components/ProductCard";
 import { ProductProps } from "@/types";
-import { getCategoryData, getProductData } from "../api/sanity/endpoint";
+import { client } from "@/lib/sanity";
+
+export async function getProductData() {
+  const query = `*[_type == "product"][0...8] | order(_updatedAt asc) {
+    _id,
+    price,
+    name,
+    "slug": slug.current,
+    "categoryName": category->name,
+    "imageUrl1": images[0].asset->url,
+    "imageUrl2": images[1].asset->url,
+  }`;
+
+  const data = await client.fetch(query);
+
+  return data;
+}
+
+async function getCategoryData(category: string) {
+  const query = `*[_type == "product" && category->name == "${category}"][0...4]{
+    _id,
+    price,
+    name,
+    "slug": slug.current,
+    "categoryName": category->name,
+    "imageUrl1": images[0].asset->url,
+    "imageUrl2": images[1].asset->url,
+  }`;
+
+  const data = await client.fetch(query);
+
+  return data;
+}
 
 export default async function CategoryPage({
   params,

@@ -1,7 +1,16 @@
-import { getCompanyLogo } from "@/app/api/sanity/endpoint";
-import { urlFor } from "@/lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
 import { CompanyLogoProps } from "@/types";
 import Image from "next/image";
+
+async function getCompanyLogo() {
+  const query = `*[_type == "companyLogo"]{
+    logo,
+  }`;
+
+  const data = await client.fetch(query);
+
+  return data;
+}
 
 export default async function CompanyPartners() {
   const logos: CompanyLogoProps[] = await getCompanyLogo();

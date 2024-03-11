@@ -1,9 +1,19 @@
-import { urlFor } from "@/lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { getNavigationcardData } from "@/app/api/sanity/endpoint";
+
+async function getNavigationcardData() {
+  const query = `*[_type == "navigationCard"] {
+    image,
+    "categoryName": category->name,
+  }`;
+
+  const data = await client.fetch(query);
+
+  return data;
+}
 
 export default async function ShopByCategory() {
   const navigationCard = await getNavigationcardData();
