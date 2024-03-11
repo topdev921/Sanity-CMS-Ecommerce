@@ -2,7 +2,7 @@ import ProductCard from "@/components/ProductCard";
 import { ProductProps } from "@/types";
 import { client } from "@/lib/sanity";
 
-export async function getProductData() {
+async function getProductData() {
   const query = `*[_type == "product"][0...8] | order(_updatedAt asc) {
     _id,
     price,
