@@ -1,4 +1,4 @@
-import { getProductData } from "@/app/api/sanity/sanity";
+import { getProductData } from "@/app/api/sanity/endpoint";
 import { ProductIdProps, ProductProps } from "@/types";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";

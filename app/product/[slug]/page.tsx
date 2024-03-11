@@ -1,4 +1,4 @@
-import { getSingleProductData } from "@/app/api/sanity/sanity";
+import { getSingleProductData } from "@/app/api/sanity/endpoint";
 import AddToCartButton from "@/components/AddToCartButton";
 import ProductCarousel from "@/components/ProductCarousel";
 import ShopByCategory from "@/components/ShopByCategory";

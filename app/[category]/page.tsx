@@ -1,6 +1,6 @@
 import ProductCard from "@/components/ProductCard";
 import { ProductProps } from "@/types";
-import { getCategoryData, getProductData } from "../api/sanity/sanity";
+import { getCategoryData, getProductData } from "../api/sanity/endpoint";
 
 export default async function CategoryPage({
   params,

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import InfiniteCarousel from "./InfiniteCarousel";
 import { Button } from "./ui/button";
-import { getMastheadData } from "@/app/api/sanity/sanity";
+import { getMastheadData } from "@/app/api/sanity/endpoint";
 
 interface MastHeadProps {
   index: 0 | 1;

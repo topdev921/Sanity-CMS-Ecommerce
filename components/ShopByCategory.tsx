@@ -3,7 +3,7 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { getNavigationcardData } from "@/app/api/sanity/sanity";
+import { getNavigationcardData } from "@/app/api/sanity/endpoint";
 
 export default async function ShopByCategory() {
   const navigationCard = await getNavigationcardData();
