@@ -1,9 +1,9 @@
-import { getNavigationcardData } from "@/app/api/sanity/route";
 import { urlFor } from "@/lib/sanity";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { getNavigationcardData } from "@/app/api/sanity/sanity";
 
 export default async function ShopByCategory() {
   const navigationCard = await getNavigationcardData();

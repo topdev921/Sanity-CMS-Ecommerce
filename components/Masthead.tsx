@@ -1,9 +1,9 @@
-import { getMastheadData } from "@/app/api/sanity/route";
 import { urlFor } from "@/lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
 import InfiniteCarousel from "./InfiniteCarousel";
 import { Button } from "./ui/button";
+import { getMastheadData } from "@/app/api/sanity/sanity";
 
 interface MastHeadProps {
   index: 0 | 1;

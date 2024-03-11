@@ -1,4 +1,4 @@
-import { getCompanyLogo } from "@/app/api/sanity/route";
+import { getCompanyLogo } from "@/app/api/sanity/sanity";
 import { urlFor } from "@/lib/sanity";
 import { CompanyLogoProps } from "@/types";
 import Image from "next/image";
